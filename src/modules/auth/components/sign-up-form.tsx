@@ -5,7 +5,8 @@ import {
   FormLabel,
   Input,
   Link,
-  Text,
+  Text, 
+
 } from "@chakra-ui/react";
 import AuthActions from "../actions/auth-actions";
 
@@ -15,20 +16,21 @@ export default function SignUpForm() {
       <Flex
         as="form"
         action={AuthActions.createAccount}
-        w="300px"
-        bg="#E0FFFF"
+        w="350px"
+        border="1px solid #e0dede"
         flexDirection="column"
         p="1.5rem"
-        gap="1rem"
+        gap="1.5rem"
         borderRadius="8px"
+        lineHeight="10px"
       >
-        <Flex as="form" justifyContent="center">
+        <Flex justifyContent="center" marginBottom="1rem">
           <Text fontWeight="bold" fontSize="1.2rem">
             Realize o seu cadastro
           </Text>
         </Flex>
         <Box>
-          <FormLabel htmlFor="name">Nome:</FormLabel>
+          <FormLabel htmlFor="name">Nome</FormLabel>
           <Input
             id="name"
             type="text"
@@ -37,7 +39,7 @@ export default function SignUpForm() {
           ></Input>
         </Box>
         <Box>
-          <FormLabel htmlFor="email">Email:</FormLabel>
+          <FormLabel htmlFor="email">Email</FormLabel>
           <Input
             id="email"
             type="email"
@@ -46,7 +48,7 @@ export default function SignUpForm() {
           ></Input>
         </Box>
         <Box>
-          <FormLabel htmlFor="password">Senha:</FormLabel>
+          <FormLabel htmlFor="password">Senha</FormLabel>
           <Input
             id="password"
             type="password"
@@ -54,11 +56,11 @@ export default function SignUpForm() {
             required
           ></Input>
         </Box>
-        <Flex justifyContent="space-between">
-          <Button type="submit" bg="#87CEFA" color="#fff">
+        <Flex justifyContent="space-between" alignItems="center">
+          <Button type="submit" bg="#131313" color="#fff" _hover={{opacity: '0.9' }}>
             Criar conta
           </Button>
-          <Link href="/portal/signin" color="blue">
+          <Link href="/portal/signin" color="#131313">
             Já tenho conta
           </Link>
         </Flex>
