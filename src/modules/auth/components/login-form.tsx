@@ -1,12 +1,20 @@
-import { Box, Button, Flex, FormLabel, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  FormLabel,
+  Input,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 
-export default function SignIn() {
+export default function SignInForm() {
   return (
     <Flex justifyContent="center" alignItems="center" marginTop="8rem">
       <Flex
         as="form"
         w="300px"
-        bg="#D5CABD"
+        bg="#E0FFFF"
         flexDirection="column"
         p="1.5rem"
         gap="1rem"
@@ -25,7 +33,14 @@ export default function SignIn() {
           <FormLabel>Senha:</FormLabel>
           <Input type="password" placeholder="********"></Input>
         </Box>
-        <Button>Logar</Button>
+        <Flex justifyContent="space-between">
+          <Button bg="#87CEFA" color="#fff">
+            Logar
+          </Button>
+          <Link href="/portal/signin" color="blue">
+            Criar conta
+          </Link>
+        </Flex>
       </Flex>
     </Flex>
   );
