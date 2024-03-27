@@ -11,7 +11,7 @@ import {
 
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const signInFormSchema = zod.object({
   email: zod.string().min(1, "Email obrigátorio"),

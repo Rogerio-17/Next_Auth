@@ -10,7 +10,31 @@ import {
 } from "@chakra-ui/react";
 import AuthActions from "../actions/auth-actions";
 
+
+import * as zod from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+const signInFormSchema = zod.object({
+  name: zod.string().min(1, "Nom é obrigatorio"),
+  email: zod.string().min(1, "Email obrigátorio"),
+  senha: zod.string().min(1, "Senha obrigatoria"),
+})
+
+export type OderData = zod.infer<typeof signInFormSchema>
+
+export type ConfirmOrderFormData = OderData;
+
+
 export default function SignUpForm() {
+    const {register, handleSubmit} = useForm<ConfirmOrderFormData>({
+    resolver: zodResolver(signInFormSchema)
+  })
+
+ function handleGetLogin(data: ConfirmOrderFormData) {
+    console.log(data)
+  }
+
   return (
     <Flex justifyContent="center" alignItems="center" marginTop="8rem">
       <Flex
