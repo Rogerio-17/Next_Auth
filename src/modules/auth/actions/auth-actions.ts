@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
+import AuthServices from "../services/auth-services";
 
 const prisma = new PrismaClient();
 
@@ -46,6 +47,12 @@ async function Login(formData: FormData) {
     console.log("Usuário ou senha invalidos!");
     redirect("/portal/signin");
   }
+
+  await AuthServices.createSessionToken({
+    sub: user.id,
+    name: user.name,
+    email: user.email,
+  });
 
   console.log("Usuário logado com sucesso!");
   redirect("/portal");
