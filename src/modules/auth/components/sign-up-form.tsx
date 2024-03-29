@@ -5,36 +5,11 @@ import {
   FormLabel,
   Input,
   Link,
-  Text, 
-
+  Text,
 } from "@chakra-ui/react";
 import AuthActions from "../actions/auth-actions";
 
-
-import * as zod from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-
-const signInFormSchema = zod.object({
-  name: zod.string().min(1, "Nom é obrigatorio"),
-  email: zod.string().min(1, "Email obrigátorio"),
-  senha: zod.string().min(1, "Senha obrigatoria"),
-})
-
-export type OderData = zod.infer<typeof signInFormSchema>
-
-export type ConfirmOrderFormData = OderData;
-
-
 export default function SignUpForm() {
-    const {register, handleSubmit} = useForm<ConfirmOrderFormData>({
-    resolver: zodResolver(signInFormSchema)
-  })
-
- function handleGetLogin(data: ConfirmOrderFormData) {
-    console.log(data)
-  }
-
   return (
     <Flex justifyContent="center" alignItems="center" marginTop="8rem">
       <Flex
@@ -56,6 +31,7 @@ export default function SignUpForm() {
         <Box>
           <FormLabel htmlFor="name">Nome</FormLabel>
           <Input
+            name="name"
             id="name"
             type="text"
             placeholder="José Maria"
@@ -66,6 +42,7 @@ export default function SignUpForm() {
           <FormLabel htmlFor="email">Email</FormLabel>
           <Input
             id="email"
+            name="email"
             type="email"
             placeholder="seuemail@gmail.com"
             required
@@ -75,13 +52,19 @@ export default function SignUpForm() {
           <FormLabel htmlFor="password">Senha</FormLabel>
           <Input
             id="password"
+            name="password"
             type="password"
             placeholder="********"
             required
           ></Input>
         </Box>
         <Flex justifyContent="space-between" alignItems="center">
-          <Button type="submit" bg="#131313" color="#fff" _hover={{opacity: '0.9' }}>
+          <Button
+            type="submit"
+            bg="#131313"
+            color="#fff"
+            _hover={{ opacity: "0.9" }}
+          >
             Criar conta
           </Button>
           <Link href="/portal/signin" color="#131313">

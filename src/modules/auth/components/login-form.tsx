@@ -1,4 +1,3 @@
-'use client'
 import {
   Box,
   Button,
@@ -8,34 +7,14 @@ import {
   Link,
   Text,
 } from "@chakra-ui/react";
-
-import * as zod from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-
-const signInFormSchema = zod.object({
-  email: zod.string().min(1, "Email obrigátorio"),
-  senha: zod.string().min(1, "Senha obrigatoria"),
-})
-
-export type OderData = zod.infer<typeof signInFormSchema>
-
-export type ConfirmOrderFormData = OderData;
-
+import AuthActions from "../actions/auth-actions";
 
 export default function SignInForm() {
-  const {register, handleSubmit} = useForm<ConfirmOrderFormData>({
-    resolver: zodResolver(signInFormSchema)
-  })
-
- function handleGetLogin(data: ConfirmOrderFormData) {
-    console.log(data)
-  }
-
   return (
     <Flex justifyContent="center" alignItems="center" marginTop="8rem">
       <Flex
         as="form"
+        action={AuthActions.Login}
         w="350px"
         border="1px solid #e0dede"
         flexDirection="column"
@@ -43,7 +22,6 @@ export default function SignInForm() {
         gap="1.5rem"
         borderRadius="8px"
         lineHeight="10px"
-        onSubmit={handleSubmit(handleGetLogin)}
       >
         <Flex justifyContent="center" marginBottom="1rem">
           <Text fontWeight="bold" fontSize="1.2rem">
@@ -51,15 +29,30 @@ export default function SignInForm() {
           </Text>
         </Flex>
         <Box>
-          <FormLabel>Email:</FormLabel>
-          <Input {...register("email")} type="email" placeholder="seuemail@gmail.com"></Input>
+          <FormLabel htmlFor="email">Email:</FormLabel>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="seuemail@gmail.com"
+          ></Input>
         </Box>
         <Box>
-          <FormLabel>Senha:</FormLabel>
-          <Input {...register("senha")} type="password" placeholder="********"></Input>
+          <FormLabel htmlFor="password">Senha:</FormLabel>
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="********"
+          ></Input>
         </Box>
         <Flex justifyContent="space-between" alignItems="center">
-          <Button type="submit" bg="#131313" color="#fff" _hover={{opacity: '0.9' }}>
+          <Button
+            type="submit"
+            bg="#131313"
+            color="#fff"
+            _hover={{ opacity: "0.9" }}
+          >
             Logar
           </Button>
           <Link href="/portal/signin" color="#131313">
