@@ -40,10 +40,15 @@ async function isSessionValid() {
   return false;
 }
 
+function destroySession() {
+  cookies().delete("session");
+}
+
 const AuthServices = {
   openSessionToken,
   createSessionToken,
   isSessionValid,
+  destroySession,
 };
 
 export default AuthServices;

@@ -16,6 +16,12 @@ export async function middleware(req: NextRequest) {
 
   const session = await AuthServices.isSessionValid();
   if (!session) {
+    const isAPIRouter = pathname.startsWith("/api");
+
+    if (isAPIRouter) {
+      return NextResponse.json({ message: "Não autorizado" }, { status: 401 });
+    }
+
     return NextResponse.redirect(new URL("/portal/signin", req.url));
   }
 
